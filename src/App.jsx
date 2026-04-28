@@ -8,7 +8,6 @@ function App() {
     <div>
       <AddVehicle />
       <FuelEntry />
-      <hr />
       <Dashboard />
     </div>
   );
