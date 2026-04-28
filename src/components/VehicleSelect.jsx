@@ -8,11 +8,11 @@ export default function VehicleSelect({ onChange }) {
   useEffect(() => {
     async function fetchVehicles() {
       const querySnapshot = await getDocs(collection(db, "vehicles"));
-      const data = querySnapshot.docs.map(doc => ({
+      const data = querySnapshot.docs.map((doc) => ({
         id: doc.id,
-        ...doc.data()
+        ...doc.data(),
       }));
-      
+
       setVehicles(data);
     }
 
@@ -20,13 +20,18 @@ export default function VehicleSelect({ onChange }) {
   }, []);
 
   return (
-    <select onChange={(e) => onChange(e.target.value)}>
-      <option value="">Select Vehicle</option>
-      {vehicles.map(v => (
-        <option key={v.id} value={v.id}>
-          {v.name}
-        </option>
-      ))}
-    </select>
+    <div className="select-wrapper">
+      <select
+        className="dropdown-select"
+        onChange={(e) => onChange(e.target.value)}
+      >
+        <option value="">Select Vehicle</option>
+        {vehicles.map((v) => (
+          <option key={v.id} value={v.id}>
+            {v.name}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 }

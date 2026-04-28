@@ -29,18 +29,20 @@ export default function FuelEntry() {
   return (
     <div className="container">
       <div className="card">
-        <h2>⛽ Log Fuel</h2>
+        <div className="title">⛽ Log Fuel</div>
+
         <form onSubmit={handleSubmit}>
-          <div>
-            <label>Vehicle</label>
-            <br />
-            <VehicleSelect onChange={setVehicleId} />
+          <div className="input-group">
+            <label className="label">Vehicle</label>
+            <div className="select-wrapper">
+              <VehicleSelect onChange={setVehicleId} />
+            </div>
           </div>
 
-          <div style={{ marginTop: 10 }}>
-            <label>Litres</label>
-            <br />
+          <div className="input-group">
+            <label className="label">Litres</label>
             <input
+              className="input"
               type="number"
               value={litres}
               onChange={(e) => setLitres(e.target.value)}
@@ -48,7 +50,7 @@ export default function FuelEntry() {
             />
           </div>
 
-          <button style={{ marginTop: 20 }} type="submit">
+          <button className="button" type="submit">
             Save Fuel
           </button>
         </form>
