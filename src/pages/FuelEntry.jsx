@@ -28,7 +28,7 @@ export default function FuelEntry() {
 
   return (
     <div className="container">
-      <div className="card">
+      <div className="inner-card">
         <div className="title">⛽ Log Fuel</div>
 
         <form onSubmit={handleSubmit}>

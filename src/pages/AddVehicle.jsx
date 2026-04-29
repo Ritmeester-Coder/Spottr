@@ -38,7 +38,7 @@ export default function AddVehicle() {
 
   return (
     <div className="container">
-      <div className="card">
+      <div className="inner-card">
         <div className="title">🚜 Add Vehicle</div>
 
         <form onSubmit={handleSubmit}>
