@@ -74,7 +74,7 @@ export default function Dashboard() {
     <div className="container">
       <div className="card">
         <div>
-          <img src="../../public/logo.png" alt="Spottr Logo" className="logo" />
+          <img src="/logo.png" alt="Spottr Logo" className="logo" />
         </div>
         <div className="title">Dashboard</div>
         <div className="form-row">
