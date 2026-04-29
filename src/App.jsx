@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "./firebase";
+import "./styles.css";
 
 import Dashboard from "./pages/Dashboard";
 import Auth from "./pages/Auth";
@@ -24,8 +25,10 @@ export default function App() {
 
   return (
     <div>
-      <div style={{ padding: 10, textAlign: "right" }}>
-        <button onClick={() => signOut(auth)}>Logout</button>
+      <div className="log-out-container">
+        <button className="log-out-button" onClick={() => signOut(auth)}>
+          Logout
+        </button>
       </div>
 
       <Dashboard />

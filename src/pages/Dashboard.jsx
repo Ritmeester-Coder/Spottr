@@ -151,18 +151,7 @@ export default function Dashboard() {
             >
               <div className="title">Recent Logs</div>
 
-              <button
-                onClick={clearLogs}
-                style={{
-                  background: "#d32f2f",
-                  color: "white",
-                  border: "none",
-                  padding: "8px 12px",
-                  borderRadius: "8px",
-                  fontSize: "12px",
-                  cursor: "pointer",
-                }}
-              >
+              <button className="clear-logs-button" onClick={clearLogs}>
                 Clear Logs
               </button>
             </div>
