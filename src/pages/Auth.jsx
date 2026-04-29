@@ -29,6 +29,9 @@ export default function Auth() {
   return (
     <div className="container">
       <div className="card">
+        <div>
+          <img src="/logo.png" alt="Spottr Logo" className="logo" />
+        </div>
         <div className="title">{isLogin ? "Login" : "Create Account"}</div>
 
         <form onSubmit={handleSubmit}>
@@ -51,7 +54,9 @@ export default function Auth() {
             />
           </div>
 
-          <button className="button">{isLogin ? "Login" : "Sign Up"}</button>
+          <button className="login-button">
+            {isLogin ? "Login" : "Sign Up"}
+          </button>
         </form>
 
         {error && <p style={{ color: "red" }}>{error}</p>}
