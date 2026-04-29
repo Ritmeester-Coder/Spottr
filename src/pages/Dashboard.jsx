@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 import { db } from "../firebase";
+import FuelEntry from "./../pages/FuelEntry";
+import AddVehicle from "./../pages/AddVehicle";
 
 export default function Dashboard() {
   const [logs, setLogs] = useState([]);
@@ -71,7 +73,19 @@ export default function Dashboard() {
   return (
     <div className="container">
       <div className="card">
-        <div className="title">📊 Dashboard</div>
+        <div>
+          <img src="../../public/logo.png" alt="Spottr Logo" className="logo" />
+        </div>
+        <div className="title">Dashboard</div>
+        <div className="form-row">
+          <div className="form-col">
+            <AddVehicle />
+          </div>
+
+          <div className="form-col">
+            <FuelEntry />
+          </div>
+        </div>
       </div>
 
       {/* Total Today */}
@@ -80,45 +94,53 @@ export default function Dashboard() {
         <div className="metric">{totalToday} L</div>
       </div>
 
-      {/* Per Vehicle */}
-      <div className="card">
-        <div className="title">Fuel per Vehicle</div>
+      <div className="form-row">
+        <div className="form-col">
+          {/* Per Vehicle */}
+          <div className="card">
+            <div className="title">Fuel per Vehicle</div>
 
-        {Object.keys(perVehicle).length === 0 ? (
-          <p>No data yet</p>
-        ) : (
-          Object.entries(perVehicle)
-            .sort((a, b) => b[1] - a[1])
-            .map(([vehicleId, litres]) => (
-              <div key={vehicleId} className="list-item">
-                <div className="vehicle-name">{getVehicleName(vehicleId)}</div>
-                <div className="litres">{litres} L</div>
-              </div>
-            ))
-        )}
-      </div>
+            {Object.keys(perVehicle).length === 0 ? (
+              <p>No data yet</p>
+            ) : (
+              Object.entries(perVehicle)
+                .sort((a, b) => b[1] - a[1])
+                .map(([vehicleId, litres]) => (
+                  <div key={vehicleId} className="list-item">
+                    <div className="vehicle-name">
+                      {getVehicleName(vehicleId)}
+                    </div>
+                    <div className="litres">{litres} L</div>
+                  </div>
+                ))
+            )}
+          </div>
+        </div>
 
-      {/* Logs */}
-      <div className="card">
-        <div className="title">Recent Logs</div>
+        <div className="form-col">
+          {/* Logs */}
+          <div className="card">
+            <div className="title">Recent Logs</div>
 
-        {logs.length === 0 ? (
-          <p>No logs yet</p>
-        ) : (
-          logs.map((log) => (
-            <div key={log.id} className="list-item">
-              <div className="vehicle-name">
-                {getVehicleName(log.vehicle_id)}
-              </div>
-              <div className="litres">{log.litres} L</div>
-              <div className="timestamp">
-                {log.timestamp?.toDate
-                  ? log.timestamp.toDate().toLocaleString()
-                  : "No timestamp"}
-              </div>
-            </div>
-          ))
-        )}
+            {logs.length === 0 ? (
+              <p>No logs yet</p>
+            ) : (
+              logs.map((log) => (
+                <div key={log.id} className="list-item">
+                  <div className="vehicle-name">
+                    {getVehicleName(log.vehicle_id)}
+                  </div>
+                  <div className="litres">{log.litres} L</div>
+                  <div className="timestamp">
+                    {log.timestamp?.toDate
+                      ? log.timestamp.toDate().toLocaleString()
+                      : "No timestamp"}
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
