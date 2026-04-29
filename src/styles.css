@@ -139,8 +139,7 @@ body {
 
 .form-row {
   display: flex;
-  gap: 16px;
-  margin-top: 16px;
+  gap: 8px;
 }
 
 /* each column */

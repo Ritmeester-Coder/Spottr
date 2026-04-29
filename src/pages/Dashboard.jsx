@@ -3,6 +3,7 @@ import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 import { db } from "../firebase";
 import FuelEntry from "./../pages/FuelEntry";
 import AddVehicle from "./../pages/AddVehicle";
+import { deleteDoc, doc } from "firebase/firestore";
 
 export default function Dashboard() {
   const [logs, setLogs] = useState([]);
@@ -15,6 +16,27 @@ export default function Dashboard() {
   const getVehicleName = (vehicleId) => {
     if (!vehiclesLoaded) return "Loading...";
     return vehicles[vehicleId] || "Unknown Vehicle";
+  };
+
+  const clearLogs = async () => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete ALL logs?",
+    );
+
+    if (!confirmDelete) return;
+
+    try {
+      const deletePromises = logs.map((log) =>
+        deleteDoc(doc(db, "fuel_logs", log.id)),
+      );
+
+      await Promise.all(deletePromises);
+
+      alert("Logs cleared successfully");
+    } catch (err) {
+      console.error(err);
+      alert("Error clearing logs");
+    }
   };
 
   useEffect(() => {
@@ -120,7 +142,30 @@ export default function Dashboard() {
         <div className="form-col">
           {/* Logs */}
           <div className="card">
-            <div className="title">Recent Logs</div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <div className="title">Recent Logs</div>
+
+              <button
+                onClick={clearLogs}
+                style={{
+                  background: "#d32f2f",
+                  color: "white",
+                  border: "none",
+                  padding: "8px 12px",
+                  borderRadius: "8px",
+                  fontSize: "12px",
+                  cursor: "pointer",
+                }}
+              >
+                Clear Logs
+              </button>
+            </div>
 
             {logs.length === 0 ? (
               <p>No logs yet</p>
