@@ -153,6 +153,25 @@ body {
   .form-row {
     flex-direction: column;
   }
+
+  .log-out-container {
+    text-align: right;
+  }
+  .log-out-button {
+    background: #d32f2f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    position: relative !important;
+    right: 4% !important;
+    top: 60px !important;
+  }
+
+  .dashboard {
+    margin-top: -50px !important;
+  }
 }
 
 .logo {
@@ -175,7 +194,7 @@ body {
   cursor: pointer;
   position: fixed;
   top: 40px;
-  left: 79%;
+  right: 22%;
 }
 
 .clear-logs-button {

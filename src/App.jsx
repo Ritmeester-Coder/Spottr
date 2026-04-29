@@ -24,14 +24,14 @@ export default function App() {
   if (!user) return <Auth />;
 
   return (
-    <div>
+    <div className="dashboard">
       <div className="log-out-container">
         <button className="log-out-button" onClick={() => signOut(auth)}>
           Logout
         </button>
       </div>
 
-      <Dashboard />
+      <Dashboard className="dashboard" />
     </div>
   );
 }
